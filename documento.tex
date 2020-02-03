@@ -1,0 +1,142 @@
+\documentclass[        
+    a4paper,% Tamanho da folha A4
+    12pt,               % Tamanho da fonte 12pt
+    sumario=tradicional,
+    %chapter=title,     % Todos os capitulos devem ter caixa alta
+    %section=TITLE,     % Todas as secoes devem ter caixa alta
+    oneside,            % Usada para impressao em apenas uma face do papel
+    english,            % Hifenizacoes em ingles
+    spanish,            % Hifenizacoes em espanhol
+    brazil% Ultimo idioma eh o idioma padrao do documento
+]{abntex2/abntex2}
+
+\usepackage[utf8]{inputenc} % UNICODE no arquivo tex
+\usepackage[T1]{fontenc}    % UNICODE no arquivo pdf
+\usepackage{amsmath}
+\usepackage{multicol}
+\DeclareMathOperator{\arcsec}{arcsec}
+\usepackage{subfigure}
+\usepackage[compatibility=false]{caption}
+
+%\usepackage[small,bf]{caption}
+\input{lib/preambulo}
+
+% Remove as bordas vermelhas e verdes do PDF gerado
+% Coloque 'sim' pare remover
+\removerbordasdohyperlink{sim} 
+
+% Adiciona a cor Azul a todos os hyperlinks
+\cordohyperlink{sim}
+
+\ies{Universidade Federal Rural de Pernambuco}
+\iessigla{UFRPE}
+\centro{Programa de Pós-Graduação em Informática Aplicada}
+
+\graduacaoem{Ciência da Computação}
+\habilitacao{bacharel}
+
+%TODO - Nome do autor
+\autor{Gerson Rodrigues Santos}
+
+%TODO - Título do trabalho
+\titulo{Modelos Computacionais para a Simulação e Análise da Detecção de Ondas Gravitacionais.}
+
+%TODO - Ano
+\data{2020}
+
+%TODO - Local
+\local{Recife -- PE}
+
+%TODO - Data da defesa.
+\dataaprovacao{19 de 02 de 2020.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     Informação sobre o Orientador       %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%TODO - Nome do orientador
+\orientador{Prof. Tiago A. E. Ferreira}
+\orientadorcentro{Universidade Federal Rural de Pernambuco}
+\orientadories{Departamento de Estatística e Informática}
+\orientadorfeminino{nao} % Coloque 'sim' se for do sexo feminino
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%      Informação sobre o Co-orientador   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Deixe o nome do coorientador em branco para remover do documento
+
+\coorientador{Prof. Antônio de Pádua Santos}
+\coorientadorcentro{Universidade Federal Rural de Pernambuco}
+\coorientadories{Departamento de Física}
+\coorientadorfeminino{nao} % Coloque 'sim' se for do sexo feminino
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%      Informação sobre a banca           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Atenção! Deixe o nome do membro da banca em branco para remover da folha de aprovacão
+
+%TODO - Primeiro membro da banca
+\membrodabancadois{WILSON ROSA DE OLIVEIRA JUNIOR}
+\membrodabancadoiscentro{Universidade}
+\membrodabancadoisies{Departamento}
+
+%TODO - Segundo membro da banca
+\membrodabancatres{Membro 3 da banca}
+\membrodabancatrescentro{Universidade}
+\membrodabancatresies{Departamento}
+
+\membrodabancaquatro{}
+\membrodabancaquatrocentro{}
+\membrodabancaquatroies{Universidade do Membro da Banca Quatro - SIGLA}
+\membrodabancacinco{}
+\membrodabancacincocentro{}
+\membrodabancacincoies{Universidade do Membro da Banca Cinco - SIGLA}
+\membrodabancaseis{}
+\membrodabancaseiscentro{}
+\membrodabancaseisies{Universidade do Membro da Banca Seis - SIGLA}
+
+\begin{document}
+
+	% Elementos pré-textuais
+	
+	\imprimircapa
+	\imprimirfolhaderosto{}
+	
+	\imprimirfichacatalografica{elementos-pre-textuais/ficha-catalografica}
+	
+	\imprimirfolhadeaprovacao{}
+	\imprimirdedicatoria{elementos-pre-textuais/dedicatoria}
+	\imprimiragradecimentos{elementos-pre-textuais/agradecimentos}
+	\imprimirepigrafe{elementos-pre-textuais/epigrafe}
+	\imprimirresumo{elementos-pre-textuais/resumo}
+    \imprimirabstract{elementos-pre-textuais/abstract}
+	\imprimirlistadeilustracoes
+	\imprimirlistadetabelas
+    \imprimirlistadealgoritmos
+	\imprimirlistadesimbolos{elementos-pre-textuais/lista-de-acronimos}   
+	\imprimirsumario
+	
+	%Elementos textuais
+	
+	\textual
+	\input{elementos-textuais/1introducao}
+	\input{elementos-textuais/2revisao-da-literatura}
+	\input{elementos-textuais/3metodologia}
+	\input{elementos-textuais/4resultados}
+	\input{elementos-textuais/5conclusao}
+	
+	%Elementos pós-textuais	
+	
+	\bibliography{elementos-pos-textuais/referencias}
+	\imprimirglossario	
+	\imprimirapendices
+		% Adicione aqui os apendices do seu trabalho
+		\input{elementos-pos-textuais/apendices/exemplo-de-apendice}	
+% 	\imprimiranexos
+% 		% Adicione aqui os anexos do seu trabalho
+% 		\input{elementos-pos-textuais/anexos/exemplo-de-anexo}
+	\imprimirindice
+
+\end{document}

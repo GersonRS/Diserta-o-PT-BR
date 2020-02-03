@@ -1,0 +1,102 @@
+\chapter{Resultados}
+\label{chap:resultados}
+
+Foram realizados vários testes para encontrar o melhor modelo(rede) que atendessem os objetivos desta pesquisa, e após todo esse processo inicial, foi possível encontrar e definir os parâmetros da estrutura da RNA conforme é ilustrado na Figura \ref{fig:arquiteturarede}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figuras/arquitetura_rede.png}
+\caption{Arquitetura da RNA.}
+\label{fig:arquiteturarede}
+\end{figure}
+
+Como é mostrado na Figura \ref{fig:arquiteturarede}, a rede apresenta a configuração de 410 entradas, pois, as entradas foram restringidas a uma duração de 0,1 segundos, e a uma taxa de amostragem de 4096Hz.
+
+Durante o processo de testes a configuração que obteve o melhor resultado foi com uma camada oculta contendo 10 neurônios. A quantidade pequena de neurônios foi suficiente para conseguir a generalização máxima, para o problema da pesquisa. Notou-se que durante o processo de testes o aumento da quantidade de neurônios na camada oculta prolongava o treinamento e influenciava negativamente na generalização da RNA. Para manter uma RNA de baixo custo computacional optou-se pela menor quantidade de neurônios sem perda de generalização do processo, o que resultou em uma RNA extremamente leve em comparação a redes neurais profundas. 
+
+A camada de saída se manteve constante com 2 neurônios, devido ao método adotado na pesquisa, que utilizou da Equação~\ref{eq:score} para aprimorar a discriminação do resultado da RNA. Isto possibilitou a geração de duas distribuições do \textit{score}, uma para os classificados como Onda e uma para os classificados como Ruído.
+
+E quanto aos parâmetros de treinamento, o número máximo de iterações permaneceu o mesmo durante toda a pesquisa com 100000 iterações, apesar de que, em nenhum momento a rede atingiu esse limite, mesmo assim foi usado como critério de parada. O valor inicial para a taxa de aprendizado foi de 0,025 mas foi usado uma taxa adaptativa. A função de ativação na camada oculta foi a Logarítmica Sigmoide, a qual, é comumente utilizada por redes neurais com propagação positiva (Feedforward) que precisam ter como saída apenas números positivos, em redes neurais multicamadas. A função de ativação usada na camada de saída foi a Linear, pois, apresentou melhor resultado dado que esta função não altera a saída do neurônio. Em consequência do uso da Equação~\ref{eq:score}  a função de ativação Softmax não foi cogitada, apesar de ser comumente usada em redes neurais de classificação.
+
+Tanto o MSE quanto o KS foram utilizados como critério para definir a acurácia da rede, pois quanto menor o MSE melhor o resultado da RNA. Neste sentido a rede que apresentou o menor erro (MSE) possível, obtendo somente 0.000140842 de erro em apenas 5612 épocas de treinamento.
+
+Consequentemente a RNA apresentou uma excelente discriminação das classe Onda e Ruído. É mostrado na Figura~\ref{fig:histograma} a distribuição do score gerado pela RNA, em que, a classe Onda tem uma distribuição do score centrada em torno de $1$, enquanto a classe Ruído tem uma distribuição do score em torno de $0$. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figuras/histograma.eps}
+\caption{Score da RNA para as duas classes (Onda e Ruído) - Distribuição empírica do score.}
+\label{fig:histograma}
+\end{figure}
+
+É mostrado na Figura~\ref{fig:KS} a distância KS entre essas duas distribuições. É notável ver a separação das duas classes, pois, as distribuições não tem ponto de intersecção em comum. Portanto, o modelo distingue perfeitamente o que é um Onda Gravitacional tanto quanto o que é Ruído. Como a separação das duas distribuições foi muito evidente, o valor do KS assume o valor máximo de 1.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figuras/KS.eps}
+\caption{Score da RNA para as duas classes (Onda e Ruído) - Distribuição  empírica acumulada do score.}
+\label{fig:KS}
+\end{figure}
+
+Logo após encontrar o melhor modelo o comitê de RNA foi formado com as 500 melhores redes conforme é mostrado na Figura~\ref{fig:comite}. O critério de seleção das RNAs para o comitê, deu-se somente pelo MSE, dado que, todas as rede com a configuração descrita acima apresentam uma discriminação excelente como foi comprovado pelas Figuras~\ref{fig:histograma} e~\ref{fig:KS}.
+
+Depois disso, quando o comitê recebeu os dados reais do LIGO para análise, um valor de score foi gerado. Foi gerado um score para cada um dos observatórios (H1 e L1) do LIGO para cada uma das nove ondas selecionadas.
+
+Existem duas formas de analisar esse valor do score. Na primeira metodologia, na fase de treinamento, é determinado um valor de pontuação limite, em que valores inferiores a esse limite serão classificados como classe "Ruído" e valores maiores que esse limite serão classificados como classe "Onda". 
+
+A segunda metodologia é considerar a distribuição empírica do score como uma função de pertinência. Assim, o valor do score pode ser visto como um termômetro, onde valores baixos do score implicam na classe ``Ruído" e valores altos do score na classe ``Onda".
+
+Neste sentido esta pesquisa adotou a segunda metodologia a qual trata o score como um termômetro de ondas gravitacionais. Portanto o conjunto criado de dados reais do LIGO e separados em janelas deslizantes, produz resultados de um score ao longo do tempo, a medida que a janela deslizante percorre os dados.
+
+É mostrado na Figura~\ref{fig:detection} o resultado após a rede ser submetida aos dados da onda gravitacional GW150914 do laboratório Hanford(H1). Nesta imagem é possível notar o valor do score ao longo do tempo, em que, em certo ponto o score cresce a medida que a janela deslizante apresenta a onda gravitacional ao classificador, até o ponto em que o score atinge o valor 1, onde a janela deslizante esta centrada na onda gravitacional. Por outro lado, quando a janela deslizante avança e a onda gravitacional sai do foco e é finalizada o score volta a se aproximar de zero e permanece próximo até o final da classificação.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figuras/detection.eps}
+\caption{Resultado do score do comitê em comparação com os dados de entrada}
+\label{fig:detection}
+\end{figure}
+
+Assim como o LIGO faz para confirmar a detecção das GW, esta pesquisa adotou a mesma premissa e usou os scores gerados para os dois laboratórios do LIGO, Figura~\ref{fig:score-H1} e~\ref{fig:score-L1} para fazer uma coincidência entre os dados, afim de confirmar a detecção da onda gravitacional.
+
+ \begin{figure*}
+     \subfigure[Score gerado para o laboratório H]{\includegraphics[width=0.5\textwidth]{figuras/GW150914_LabH.eps}\label{fig:score-H1}}
+     \subfigure[Score gerado para o laboratório L]{\includegraphics[width=0.5\textwidth]{figuras/GW150914_LabL.eps}\label{fig:score-L1}}
+     \caption{Score da onda gravitacional GW150914}
+ \end{figure*}
+
+O resultado desta coincidência de dados gerou um novo score muito mais limpo e claro sobre a detecção da onda gravitacional. É mostrado na Figura~\ref{fig:scoreHL} o resultado da coincidência entre os scores da GW150914 gerados para os dois laboratórios do LIGO.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figuras/GW150914_LabHL.eps}
+\caption{Resultado da coincidência entre os laboratórios H1 e L1 para a GW150914.}
+\label{fig:scoreHL}
+\end{figure}
+
+Para uma melhor visualização dos resultados na Figura \ref{fig:scoreHL} é possível notar que foi feito uma suavização dos dados, representada pela linha vermelha (\textit{Smooth}). Nesta Figura \ref{fig:scoreHL} diferente dos resultados individuais de cada laboratório do LIGO, o score não alcança a margem do valor máximo de 1, visto que, apos a coincidência dos dados entre os laboratórios, este valor tende a ficar menor, mas a sua representação permanece em evidencia, o que demostra a detecção da onda gravitacional em meio aos dados. É mostrado na Figura \ref{fig:scoreHLZoom} um zoom deste resultado.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figuras/GW150914_LabHL_zoom.eps}
+\caption{Zoom do resultado da coincidência entre os laboratórios H1 e L1 para a GW150914.}
+\label{fig:scoreHLZoom}
+\end{figure}
+
+Além disso, com os resultados é possível apontar a existência de mais informações que podem ser tiradas, como o comportamento da reverberação dos corpos astronômicos após o colapso, a possibilidade de cálculo dos tempos de ringdown, a duração temporal do evento e etc.
+
+Como consequência disto, foi encontrado a estimativa do tempo de fusão-ringdown de todas as GWs usadas nesta pesquisa. Por cauda da complexidade das técnicas de parametrização, até o momento foram descobertas o tempo de ringdown somente em metade das observações feitas pelo LIGO.
+
+Outra grande descoberta inédita, foi a descoberta de um Plator presente em todas os resultados desta pesquisa, é mostrado na Figura \ref{fig:scoreHLPlator} o decaimento do score ao final da fusão dos buracos negros, existe uma pequena ondulação que possivelmente seja a reverberação pós fusão dos dois buracos negros. Estes estudos estão em andamento e serão descritos em um artigo subsequente. 
+
+Diante disto, estas revelações demostram a grande aptidão desta pesquisa em desvendar novas informações sobre as ondas gravitacionais.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figuras/GW150914_LabHL_plator.eps}
+\caption{Zoom do resultado da coincidência entre os laboratórios H1 e L1 para a GW150914 com a marcação do Plator.}
+\label{fig:scoreHLPlator}
+\end{figure}
+
+A possibilidade de encontrar novas informações inéditas sobre as ondas gravitacionais que esta pesquisa trás, a torna um material de pesquisa muito promissor para esta nova areá de pesquisa em ascensão. Além de prover uma ferramenta para auxiliar ou complementar os algoritmos de detecção de ondas gravitacionais existentes.
+

@@ -1,0 +1,66 @@
+\usepackage{graphicx}                               % Inserir figuras
+\usepackage{amsfonts, amssymb, amsmath, amsthm, exscale, ifthen}             % Fonte e símbolos matemáticos
+\usepackage{booktabs}                               % Comandos para tabelas
+\usepackage{verbatim}                               % Texto é interpretado como escrito no documento
+\usepackage{multirow, array}                        % Múltiplas linhas e colunas em tabelas
+\usepackage{indentfirst}                            % Endenta o primeiro parágrafo de cada seção.
+\usepackage{listings}                               % Utilizar codigo fonte no documento
+\usepackage{xcolor}
+\usepackage{microtype}                              % Para melhorias de justificação?
+\usepackage[portuguese,ruled,lined]{algorithm2e}    % Escrever algoritmos
+\usepackage{algorithmic}                            % Criar Algoritmos  
+\usepackage{float}                                  % Utilizado para criação de floats
+\usepackage{amsgen}
+\usepackage{lipsum}                                 % Usar a simulação de texto Lorem Ipsum
+\usepackage{tocloft}                                % Permite alterar a formatação do Sumário
+\usepackage{etoolbox}                               % Usado para alterar a fonte da Section no Sumário
+\usepackage[nogroupskip,nonumberlist,acronym]{glossaries}                % Permite fazer o glossario
+\usepackage{caption}                                % Altera o comportamento da tag caption
+\usepackage[abnt-repeated-author-omit=yes,alf,abnt-emphasize=bf,bibjustif,recuo=0cm,abnt-etal-cite=2,abnt-etal-list=0]{abntex2cite}  % Citações padrão ABNT
+%\usepackage[bottom]{footmisc}                      % Mantém as notas de rodapé sempre na mesma posição
+\usepackage[bottom=2cm,top=3cm,left=3cm,right=2cm]{geometry}
+%\usepackage{lmodern}                               % Usa a fonte Latin Modern
+%\usepackage{subfig}                                % Posicionamento de figuras
+%\usepackage{scalefnt}                              % Permite redimensionar tamanho da fonte
+\usepackage{color, colortbl}                       	% Comandos de cores
+%\usepackage{lscape}                                % Permite páginas em modo "paisagem"
+%\usepackage{ae, aecompl}                           % Fontes de alta qualidade
+%\usepackage{picinpar}                              % Dispor imagens em parágrafos
+\usepackage{latexsym}                              	% Símbolos matemáticos
+%\usepackage{upgreek}                               % Fonte letras gregas
+\usepackage{appendix}                               % Gerar o apendice no final do documento
+\usepackage{paracol}                                % Criar paragrafos sem identacao
+\usepackage{lib/uecetex2}		                    % Biblioteca com as normas da UECE para trabalhos academicos
+\usepackage{pdfpages}                               % Incluir pdf no documento
+\usepackage{amsmath}                                % Usar equacoes matematicas
+\usepackage{footnote}                               % Permite footnote em tabelas
+\usepackage{subfigure}
+
+\usepackage{longtable}
+
+\setlength\extrarowheight{10pt}                     % Definir altura de linhas das tabelas.
+
+% Organiza e gera a lista de abreviaturas, simbolos e glossario
+\makeglossaries
+
+% Gera o Indice do documento
+\makeindex
+
+\hyphenation{bacharelado universidade computação garanhuns}
+
+\newcommand{\ok}{$\surd$}
+\newcommand{\cf}{\emph{Cloud Foundry}~}
+
+% Definição
+\newtheorem{defi}{Definição}
+
+\usepackage{calligra}
+
+% Hifenização
+\usepackage{hyphenat}
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+\hyphenchar\font=-1
+\sloppy
