@@ -39,6 +39,8 @@ Para que seja possível a detecção de ondas gravitacionais é necessário um g
 
 No entanto, o custo computacional das buscas por GWs usando as atuais técnicas de filtragem combinadas, aumenta significativamente quando é necessário a busca por sinais em uma grande quantidade de dados \cite{abbott2018prospects}.
 
+Além disto, os algoritmos de busca de parâmetros que  representam o sistema detectado, algumas vezes são surpreendidos com incertezas o que causa uma diminuição na acurácia do método usado e um aumento significativo no intervalo de confiança dos parâmetros encontrado.
+
 Por outro lado, por mais que os métodos que utilizam \textit{Deep Learning} mostrem que podem realmente ser efetivamente aplicados a esse problema ao tratá-lo como uma tarefa de classificação binária \cite{gebhard2019convolutional}, ainda necessitam do uso da computação de alto desempenho (HPC do inglês, \textit{high performance computing}), limitando as pesquisas a grupos e laboratórios com acesso a super computadores. Além disso, a própria natureza das redes neurais profundas a tornam um processo custoso quanto ao seu preparo e desenvolvimento. No caso das redes neurais profundas o treinamento pode demorar muito tempo e demandar grandes recursos computacionais.
 
 Para aprimorar ainda mais o alcance científico desse campo emergente, há uma necessidade premente de aumentar a confiabilidade e a velocidade dos algoritmos de ondas gravitacionais que permitiram essas descobertas inovadoras.
@@ -51,7 +53,7 @@ A seguir serão apresentados os objetivos geral e específicos que nortearão a 
 \subsection{Objetivo Geral}
 \label{sec:objetivo-geral}
 
-A presente pesquisa tem como objetivo geral o desenvolvimento de um classificador binário simples capaz de classificar de forma eficiente as reais medidas das ondas gravitacionais disponíveis pelo aLIGO, baseado em um Comitê de Redes Neurais Artificiais.
+A presente pesquisa tem como objetivo geral o desenvolvimento de um classificador binário simples capaz de classificar de forma eficiente as reais medidas das ondas gravitacionais disponíveis pelo aLIGO, baseado em um Comitê de Redes Neurais Artificiais e Analise de score.
 
 \subsection{Objetivo Específico}
 \label{sec:objetivo-especifico}
@@ -59,11 +61,12 @@ A presente pesquisa tem como objetivo geral o desenvolvimento de um classificado
 Para atingir o objetivo geral foram definidos os seguintes objetivos específicos: 
 \begin{itemize}
 
-\item Investigar e obter os modelos das ondas gravitacionais descobertas pelo aLIGO, disponíveis no GWOSC \cite{vallisneri2015ligo} e simular computacionalmente as ondas gravitacionais para a criação do conjunto total de dados;
+\item Obter os modelos das ondas gravitacionais descobertas pelo aLIGO, disponíveis no GWOSC \cite{vallisneri2015ligo} e simular computacionalmente as ondas gravitacionais para a criação do conjunto total de dados;
 \item Desenvolver arquiteturas de redes neurais que abranja o problema proposto.
 \item Ajustar os parâmetros que melhor se ajustem para o treinamento e validação da RNA;
-\item Desenvolver um Comitê de Redes Neurais Artificiais com as arquiteturas propostas para a classificação de sinais de ondas gravitacionais;
-\item Validar o Comitê de Redes Neurais Artificiais com as reais medidas das ondas gravitacionais do aLIGO.
+\item Aplicar uma nova abordagem por analise de score aos resultados da rede. 
+\item Desenvolver um Comitê de Redes Neurais Artificiais com as arquiteturas propostas para a classificação de sinais de ondas gravitacionais
+\item Validar o Comitê desenvolvido com as reais medidas das ondas gravitacionais do aLIGO.
 
 \end{itemize}
 
